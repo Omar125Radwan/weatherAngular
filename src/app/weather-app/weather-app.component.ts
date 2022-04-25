@@ -1,6 +1,6 @@
 import { WeatherData } from './../models/weather.model';
 import { WeatherService } from './../services/weather.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-weather-app',
@@ -8,21 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather-app.component.scss']
 })
 export class WeatherAppComponent implements OnInit {
-
   cityName: string = 'sohag';
-
+  imgUrl = `https://source.unsplash.com/1600x900/?` + this.cityName
   constructor(private weatherService: WeatherService) { }
-
   weatherData?: WeatherData
-
   ngOnInit(): void {
     this.getWeatherData(this.cityName);
-    this.cityName = '';
   }
 
   onSubmit() {
     this.getWeatherData(this.cityName);
-    this.cityName = '';
   }
 
   private getWeatherData(cityName: string) {
@@ -31,6 +26,7 @@ export class WeatherAppComponent implements OnInit {
       next: (res) => {
         this.weatherData = res;
         console.log(res);
+        this.imgUrl = `https://source.unsplash.com/1600x900/?` + this.cityName
       }
     });
   }

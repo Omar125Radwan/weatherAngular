@@ -1,4 +1,4 @@
-<div class="weather-app">
+<div class="weather-app" style="background-image: url({{imgUrl}});">
   <div class="search">
     <form #form="ngForm" (submit)="onSubmit()">
       <input type="text" placeholder="Search City" name="city" [(ngModel)] = "cityName">
